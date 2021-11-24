@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countries flag without weather</title>
+</head>
+<body>
+    <div id="holder" style="display:flex; 
+                      flex-direction:row;
+                      flex-wrap:wrap; "></div>
+    <script>
+
+         async function fetchData() { try {
+             var countryData = await fetch ("https://restcountries.com/v3.1/all")
+             var countries = await countryData.json()
+             
+             countries.forEach( element=>{
+
+                  var card = document.createElement("div");
+                  var flag = document.createElement("img")
+                  flag.setAttribute("src",element.flags.png)
+                  flag.setAttribute("width",180)
+                  card.innerText = element.name.common
+                  document.getElementById("holder").appendChild(card)
+                  card.appendChild(flag)
+
+             })
+
+
+
+
+
+
+         } catch (error) {console.log(error)
+             
+         }
+
+
+         }
+         fetchData()
+
+
+    </script>
+
+</body>
+</html>
